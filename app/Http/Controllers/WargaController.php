@@ -35,12 +35,12 @@ class WargaController extends Controller
         $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'dusun' => ['required', 'in:sragan,luar_sragan'],
-            'rt' => ['required_if:dusun,sragan', 'nullable', 'integer', 'min:1'],
-            'rw' => ['required_if:dusun,sragan', 'nullable', 'integer', 'min:1'],
-            'nomor_meteran' => ['required', 'string', 'max:255', 'unique:wargas,nomor_meteran'],
+            'rt' => ['nullable', 'integer', 'min:1'],
+            'rw' => ['nullable', 'integer', 'min:1'],
+            'nomor_meteran' => ['required', 'string', 'max:255'],
         ]);
 
-        Warga::create($request->only('nama', 'dusun', 'nomor_meteran'));
+        Warga::create($request->only('nama', 'dusun', 'rt', 'rw', 'nomor_meteran'));
 
         return redirect()->route('wargas.index')->with('success', 'Data warga berhasil ditambahkan.');
     }
@@ -61,9 +61,9 @@ class WargaController extends Controller
         $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'dusun' => ['required', 'in:sragan,luar_sragan'],
-            'rt' => ['required_if:dusun,sragan', 'nullable', 'integer', 'min:1'],
-            'rw' => ['required_if:dusun,sragan', 'nullable', 'integer', 'min:1'],
-            'nomor_meteran' => ['required', 'string', 'max:255', 'unique:wargas,nomor_meteran,' . $warga->id],
+            'rt' => ['nullable', 'integer', 'min:1'],
+            'rw' => ['nullable', 'integer', 'min:1'],
+            'nomor_meteran' => ['required', 'string', 'max:255'],
         ]);
 
         $warga->update($request->only('nama', 'dusun', 'nomor_meteran'));
