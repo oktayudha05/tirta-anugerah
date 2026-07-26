@@ -8,6 +8,7 @@ use App\Http\Controllers\PencatatanController;
 use App\Http\Controllers\RekapController;
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\PembayaranPemasanganController;
 use App\Models\Warga;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -57,11 +58,17 @@ Route::middleware(['auth', 'role:pengelola'])->group(function () {
     Route::get('rekap/excel', [RekapController::class, 'exportExcel'])->name('rekap.excel');
     Route::get('rekap', [RekapController::class, 'index'])->name('rekap.index');
     Route::post('pembayaran/tarif', [PembayaranController::class, 'updateTarif'])->name('pembayaran.update-tarif');
+    Route::post('pembayaran-pemasangan/biaya', [PembayaranPemasanganController::class, 'updateBiaya'])
+        ->name('pembayaran-pemasangan.update-biaya');
 });
 
 Route::middleware(['auth', 'role:pengelola,petugas'])->group(function () {
     Route::get('pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
     Route::patch('pembayaran/{id}', [PembayaranController::class, 'update'])->name('pembayaran.update');
+    Route::get('pembayaran-pemasangan', [PembayaranPemasanganController::class, 'index'])
+        ->name('pembayaran-pemasangan.index');
+    Route::patch('pembayaran-pemasangan/{id}/bayar', [PembayaranPemasanganController::class, 'bayar'])
+        ->name('pembayaran-pemasangan.bayar');
 });
 
 Route::middleware('auth')->group(function () {

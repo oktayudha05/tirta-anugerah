@@ -40,7 +40,18 @@ class WargaController extends Controller
             'nomor_meteran' => ['required', 'string', 'max:255'],
         ]);
 
-        Warga::create($request->only('nama', 'dusun', 'rt', 'rw', 'nomor_meteran'));
+        $warga = Warga::create($request->only('nama', 'dusun', 'rt', 'rw', 'nomor_meteran'));
+
+        // Auto-buat tagihan pemasangan jika ada biaya pemasangan aktif
+        $biaya = \App\Models\BiayaPemasangan::getBiayaAktif();
+        if ($biaya) {
+            \App\Models\PembayaranPemasangan::create([
+                'warga_id'      => $warga->id,
+                'total_biaya'   => $biaya->biaya,
+                'total_dibayar' => 0,
+                'status'        => 'belum_lunas',
+            ]);
+        }
 
         return redirect()->route('wargas.index')->with('success', 'Data warga berhasil ditambahkan.');
     }

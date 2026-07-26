@@ -31,11 +31,44 @@
                             Manajemen Akun
                         </a>
                     @endif
-                    <a href="{{ route('pembayaran.index') }}"
-                        class="px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150
-                            {{ request()->routeIs('pembayaran.*') ? 'bg-white/20 text-white' : 'text-white/70 hover:bg-white/10 hover:text-white' }}">
-                        Pembayaran
-                    </a>
+                    {{-- Dropdown Pembayaran --}}
+                    <div x-data="{ openPembayaran: false }" class="relative">
+                        <button @click="openPembayaran = !openPembayaran" @click.away="openPembayaran = false"
+                            class="px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 inline-flex items-center gap-1
+                                   {{ request()->routeIs('pembayaran.*') || request()->routeIs('pembayaran-pemasangan.*') ? 'bg-white/20 text-white' : 'text-white/70 hover:bg-white/10 hover:text-white' }}">
+                            Pembayaran
+                            <svg class="w-3 h-3 transition-transform duration-150" :class="{ 'rotate-180': openPembayaran }" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                            </svg>
+                        </button>
+                        <div x-show="openPembayaran"
+                             x-transition:enter="transition ease-out duration-100"
+                             x-transition:enter-start="transform opacity-0 scale-95"
+                             x-transition:enter-end="transform opacity-100 scale-100"
+                             x-transition:leave="transition ease-in duration-75"
+                             x-transition:leave-start="transform opacity-100 scale-100"
+                             x-transition:leave-end="transform opacity-0 scale-95"
+                             class="absolute left-0 mt-1 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-1 z-50">
+                            <a href="{{ route('pembayaran.index') }}"
+                               class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-[#F0F8A4]/40 transition-colors {{ request()->routeIs('pembayaran.index') || request()->routeIs('pembayaran.update') ? 'bg-[#F0F8A4]/20 font-semibold text-[#36656B]' : '' }}">
+                                <div class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-[#36656B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Pembayaran Air
+                                </div>
+                            </a>
+                            <a href="{{ route('pembayaran-pemasangan.index') }}"
+                               class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-[#F0F8A4]/40 transition-colors {{ request()->routeIs('pembayaran-pemasangan.*') ? 'bg-[#F0F8A4]/20 font-semibold text-[#36656B]' : '' }}">
+                                <div class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-[#36656B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                    </svg>
+                                    Pembayaran Pemasangan
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                     <a href="{{ route('pencatatans.index') }}"
                        class="px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150
                               {{ request()->routeIs('pencatatans.*') ? 'bg-white/20 text-white' : 'text-white/70 hover:bg-white/10 hover:text-white' }}">
@@ -127,13 +160,23 @@
                     <span>Manajemen Akun</span>
                 </a>
             @endif
+            {{-- Group: Pembayaran --}}
+            <div class="px-4 pt-2 pb-1 text-[10px] text-white/50 uppercase font-bold tracking-wider">Pembayaran</div>
             <a href="{{ route('pembayaran.index') }}"
-               class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-150
-                      {{ request()->routeIs('pembayaran.*') ? 'bg-white/20 text-white shadow-sm' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
-                <svg class="w-5 h-5 opacity-70 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               class="flex items-center gap-3 pl-8 pr-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-150
+                      {{ request()->routeIs('pembayaran.index') || request()->routeIs('pembayaran.update') ? 'bg-white/20 text-white shadow-sm' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
+                <svg class="w-4 h-4 opacity-70 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                <span>Pembayaran</span>
+                <span>Pembayaran Air</span>
+            </a>
+            <a href="{{ route('pembayaran-pemasangan.index') }}"
+               class="flex items-center gap-3 pl-8 pr-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-150
+                      {{ request()->routeIs('pembayaran-pemasangan.*') ? 'bg-white/20 text-white shadow-sm' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
+                <svg class="w-4 h-4 opacity-70 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+                <span>Pembayaran Pemasangan</span>
             </a>
             <a href="{{ route('pencatatans.index') }}"
                class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-150

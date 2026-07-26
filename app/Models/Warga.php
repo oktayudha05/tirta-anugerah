@@ -18,4 +18,9 @@ class Warga extends Model
     {
         return $this->hasMany(Pencatatan::class);
     }
+
+    public function pembayaranPemasangan()
+    {
+        return $this->hasOne(PembayaranPemasangan::class);
+    }
 }
