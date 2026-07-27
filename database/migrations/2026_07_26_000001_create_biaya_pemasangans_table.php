@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('biaya_pemasangans', function (Blueprint $table) {
             $table->id();
-            $table->integer('biaya');           // Nominal biaya pemasangan (misal: 2000000)
-            $table->string('berlaku_mulai');    // Format 'YYYY-MM', kapan harga ini mulai berlaku
+            $table->integer('biaya');
+            $table->string('berlaku_mulai');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
