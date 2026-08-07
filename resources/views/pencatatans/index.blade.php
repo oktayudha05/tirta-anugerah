@@ -136,8 +136,15 @@
                             <!-- Action or Logger -->
                             <td class="text-center">
                                 @if($warga->pencatatan_sekarang)
-                                    <div class="text-xs text-gray-400">
-                                        Dicatat: {{ $warga->pencatatan_sekarang->user->nama ?? 'Sistem' }}
+                                    <div class="flex flex-col items-center gap-1.5">
+                                        <div class="text-xs text-gray-400">
+                                            Dicatat: {{ $warga->pencatatan_sekarang->user->nama ?? 'Sistem' }}
+                                        </div>
+                                        <a href="{{ route('pencatatans.edit', $warga->pencatatan_sekarang->id) }}"
+                                           class="inline-flex items-center gap-1 bg-amber-400 hover:bg-amber-500 text-white text-xs font-semibold px-3 py-1 rounded-lg shadow-sm transition">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                                            Edit
+                                        </a>
                                     </div>
                                 @else
                                     <button type="submit" form="record-{{ $warga->id }}"
@@ -232,6 +239,11 @@
                             <div class="text-xs text-center text-gray-400 bg-gray-50/50 py-1.5 rounded-lg border border-gray-100">
                                 Dicatat oleh: <span class="font-medium text-gray-600">{{ $warga->pencatatan_sekarang->user->nama ?? 'Sistem' }}</span>
                             </div>
+                            <a href="{{ route('pencatatans.edit', $warga->pencatatan_sekarang->id) }}"
+                               class="w-full flex items-center justify-center gap-1.5 bg-amber-400 hover:bg-amber-500 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                                Edit Pencatatan
+                            </a>
                         @else
                             <form id="record-mobile-{{ $warga->id }}" action="{{ route('pencatatans.store') }}" method="POST" class="flex flex-col sm:flex-row gap-2 w-full">
                                 @csrf

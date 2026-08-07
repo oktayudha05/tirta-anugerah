@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buku Panduan Pengguna — Sistem Informasi Air Bersih Tirta Anugerah</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+
+    :root {
+      --primary:   #36656B;
+      --secondary: #75B06F;
+      --accent:    #DAD887;
+      --light-bg:  #F0F8A4;
+      --dark:      #1a2e30;
+      --text:      #2d3748;
+      --muted:     #718096;
+      --border:    #e2e8f0;
+      --warning:   #f6ad55;
+      --danger:    #fc8181;
+      --info:      #63b3ed;
+      --white:     #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.75;
+      color: var(--text);
+      background: #fff;
+    }
+
+    /* ─── COVER PAGE ─────────────────────────────────────────── */
+    .cover {
+      page-break-after: always;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(160deg, var(--dark) 0%, var(--primary) 60%, var(--secondary) 100%);
+      color: white;
+      padding: 60px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: rgba(117,176,111,0.2);
+    }
+    .cover-icon {
+      font-size: 72px;
+      margin-bottom: 24px;
+      line-height: 1;
+    }
+    .cover-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50px;
+      padding: 6px 20px;
+      font-size: 9pt;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .cover h1 {
+      font-size: 32pt;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .cover h1 span {
+      color: var(--accent);
+    }
+    .cover-subtitle {
+      font-size: 14pt;
+      font-weight: 300;
+      opacity: 0.85;
+      margin-bottom: 48px;
+    }
+    .cover-meta {
+      background: rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px 40px;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+    }
+    .cover-meta p {
+      font-size: 10pt;
+      opacity: 0.9;
+      margin: 4px 0;
+    }
+    .cover-meta strong { color: var(--accent); }
+    .cover-version {
+      margin-top: 40px;
+      font-size: 9pt;
+      opacity: 0.6;
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── TOC PAGE ────────────────────────────────────────────── */
+    .toc-page {
+      page-break-after: always;
+      padding: 60px 56px;
+    }
+    .toc-page h2 {
+      font-size: 22pt;
+      color: var(--primary);
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 12px;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .toc-entry {
+      display: flex;
+      align-items: baseline;
+      margin: 8px 0;
+      font-size: 10.5pt;
+    }
+    .toc-entry.bab {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 11pt;
+      margin-top: 16px;
+    }
+    .toc-entry.sub {
+      padding-left: 24px;
+      color: var(--text);
+      font-weight: 400;
+    }
+    .toc-dots {
+      flex: 1;
+      border-bottom: 1px dotted var(--border);
+      margin: 0 8px;
+      position: relative;
+      top: -4px;
+    }
+
+    /* ─── CONTENT PAGES ───────────────────────────────────────── */
+    .page {
+      padding: 48px 56px;
+    }
+    .chapter-break { page-break-before: always; }
+
+    /* ─── CHAPTER HEADER ──────────────────────────────────────── */
+    .chapter-header {
+      background: linear-gradient(135deg, var(--primary) 0%, #1a4a4f 100%);
+      color: white;
+      border-radius: 16px;
+      padding: 32px 36px;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .chapter-number {
+      font-size: 48pt;
+      font-weight: 800;
+      opacity: 0.3;
+      line-height: 1;
+      min-width: 80px;
+    }
+    .chapter-info h2 {
+      font-size: 20pt;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .chapter-info p {
+      font-size: 10pt;
+      opacity: 0.8;
+    }
+
+    /* ─── SECTION HEADERS ─────────────────────────────────────── */
+    h3 {
+      font-size: 14pt;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 32px 0 12px;
+      padding-left: 16px;
+      border-left: 4px solid var(--secondary);
+    }
+    h4 {
+      font-size: 11pt;
+      font-weight: 600;
+      color: var(--dark);
+      margin: 20px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h4::before {
+      content: '';
+      display: inline-block;
+      width: 8px; height: 8px;
+      background: var(--secondary);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ─── PARAGRAPH ───────────────────────────────────────────── */
+    p { margin: 10px 0; }
+
+    /* ─── STEP BOX ────────────────────────────────────────────── */
+    .steps {
+      background: #f7fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 16px 0;
+      counter-reset: step-counter;
+    }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin: 10px 0;
+      counter-increment: step-counter;
+    }
+    .step-num {
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      width: 26px; height: 26px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9pt;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .step-text { flex: 1; }
+    .step-text strong { color: var(--primary); }
+
+    /* ─── CALLOUTS ────────────────────────────────────────────── */
+    .callout {
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 16px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .callout-icon { font-size: 20px; flex-shrink: 0; line-height: 1.4; }
+    .callout-body { flex: 1; }
+    .callout-body strong { display: block; margin-bottom: 4px; font-size: 10pt; }
+    .callout-body p, .callout-body ul { font-size: 10pt; margin: 0; }
+    .callout-body ul { padding-left: 20px; }
+
+    .callout.info    { background: #ebf8ff; border-left: 4px solid var(--info); }
+    .callout.warning { background: #fffbeb; border-left: 4px solid var(--warning); }
+    .callout.danger  { background: #fff5f5; border-left: 4px solid var(--danger); }
+    .callout.success { background: #f0fff4; border-left: 4px solid var(--secondary); }
+    .callout.tip     { background: #fefcbf; border-left: 4px solid var(--accent); }
+
+    /* ─── TABLE ───────────────────────────────────────────────── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 10pt;
+    }
+    th {
+      background: var(--primary);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+    }
+    td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tr:nth-child(even) td { background: #f7fafc; }
+    tr:hover td { background: #edf2f7; }
+    .check-yes { color: #38a169; font-weight: 700; }
+    .check-no  { color: #e53e3e; font-weight: 700; }
+
+    /* ─── INFO BOX ────────────────────────────────────────────── */
+    .info-box {
+      background: linear-gradient(135deg, #f0f8a4 0%, #e8f5c8 100%);
+      border: 1px solid #c6f135;
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin: 16px 0;
+    }
+    .info-box h5 {
+      font-size: 10pt;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 8px;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    /* ─── CODE / FORMULA ──────────────────────────────────────── */
+    .formula {
+      background: var(--dark);
+      color: #a3e635;
+      font-family: 'Fira Code', 'Courier New', monospace;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 14px 0;
+      font-size: 10pt;
+      line-height: 1.8;
+    }
+    .formula .comment { color: #6b7280; }
+    .formula .highlight { color: #fbbf24; font-weight: 600; }
+
+    /* ─── ROLE BADGE ──────────────────────────────────────────── */
+    .role-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 9pt;
+      font-weight: 600;
+    }
+    .role-pengelola { background: #e9d8fd; color: #553c9a; }
+    .role-petugas   { background: #c6f6d5; color: #276749; }
+    .role-semua     { background: #bee3f8; color: #2a69ac; }
+
+    /* ─── GLOSSARY ────────────────────────────────────────────── */
+    .glossary-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 8px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .glossary-term {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 10pt;
+    }
+
+    /* ─── FAQ ─────────────────────────────────────────────────── */
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 14px 0;
+    }
+    .faq-q {
+      background: #f7fafc;
+      padding: 14px 18px;
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 10.5pt;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .faq-q-icon { color: var(--primary); font-size: 14pt; flex-shrink: 0; }
+    .faq-a {
+      padding: 14px 18px;
+      background: white;
+      font-size: 10pt;
+      line-height: 1.7;
+    }
+
+    /* ─── TROUBLESHOOT ────────────────────────────────────────── */
+    .trouble-card {
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      margin: 16px 0;
+    }
+    .trouble-header {
+      background: #fff5f5;
+      border-bottom: 1px solid #fed7d7;
+      padding: 14px 18px;
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700; color: #c53030;
+    }
+    .trouble-body { padding: 14px 18px; }
+    .trouble-section {
+      margin: 10px 0;
+      font-size: 10pt;
+    }
+    .trouble-section strong { color: var(--primary); display: block; margin-bottom: 4px; }
+
+    /* ─── PRINT ───────────────────────────────────────────────── */
+    @media print {
+      body { font-size: 10pt; }
+      .cover { min-height: 100vh; page-break-after: always; }
+      .toc-page { page-break-after: always; }
+      .chapter-break { page-break-before: always; }
+      .page { padding: 36px 48px; }
+    }
+
+    ul, ol { padding-left: 22px; margin: 8px 0; }
+    li { margin: 4px 0; }
+
+    .divider {
+      border: none;
+      border-top: 2px solid var(--border);
+      margin: 28px 0;
+    }
+
+    .section-intro {
+      background: linear-gradient(90deg, #edf7f0 0%, white 100%);
+      border-left: 4px solid var(--secondary);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 24px;
+      font-size: 10.5pt;
+      color: #2f4f4f;
+    }
+
+    .url-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--dark);
+      color: #a3e635;
+      font-family: 'Fira Code', monospace;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 9pt;
+    }
+
+    .page-footer {
+      margin-top: 48px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 8pt;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HALAMAN SAMPUL
+══════════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-icon">💧</div>
+  <div class="cover-badge">Buku Panduan Pengguna</div>
+  <h1>Sistem Informasi<br><span>Tirta Anugerah</span></h1>
+  <p class="cover-subtitle">Panduan Lengkap Pengelolaan Air Bersih Dusun Sragan</p>
+  <div class="cover-meta">
+    <p><strong>Untuk:</strong> Pengelola &amp; Petugas Air</p>
+    <p><strong>Versi:</strong> 1.0 — Juli 2026</p>
+    <p><strong>Bahasa:</strong> Indonesia</p>
+  </div>
+  <p class="cover-version">TIRTA ANUGERAH — Sistem Informasi Air Bersih Dusun Sragan</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     DAFTAR ISI
+══════════════════════════════════════════════════════════════ -->
+<div class="toc-page">
+  <h2>📋 Daftar Isi</h2>
+
+  <div class="toc-entry bab">
+    <span>BAB 1 — Pengenalan Sistem</span>
+    <span class="toc-dots"></span>
+    <span>3</span>
+  </div>
+  <div class="toc-entry sub">
+    <span>1.1 &nbsp; Apa Itu Sistem Ini?</span>
+    <span class="toc-dots"></span><span>3</span>
+  </div>
+  <div class="toc-entry sub">
+    <span>1.2 &nbsp; Perbedaan Peran Pengguna</span>
+    <span class="toc-dots"></span><span>3</span>
+  </div>
+  <div class="toc-entry sub">
+    <span>1.3 &nbsp; Halaman Beranda Publik</span>
+    <span class="toc-dots"></span><span>4</span>
+  </div>
+
+  <div class="toc-entry bab">
+    <span>BAB 2 — Cara Login dan Memulai</span>
+    <span class="toc-dots"></span>
+    <span>4</span>
+  </div>
+  <div class="toc-entry sub"><span>2.1 &nbsp; Cara Login ke Sistem</span><span class="toc-dots"></span><span>4</span></div>
+  <div class="toc-entry sub"><span>2.2 &nbsp; Cara Logout / Keluar</span><span class="toc-dots"></span><span>5</span></div>
+
+  <div class="toc-entry bab">
+    <span>BAB 3 — Panduan Pengelola</span>
+    <span class="toc-dots"></span>
+    <span>5</span>
+  </div>
+  <div class="toc-entry sub"><span>3.1 &nbsp; Manajemen Akun Pengguna</span><span class="toc-dots"></span><span>5</span></div>
+  <div class="toc-entry sub"><span>3.2 &nbsp; Manajemen Data Warga</span><span class="toc-dots"></span><span>7</span></div>
+  <div class="toc-entry sub"><span>3.3 &nbsp; Pengaturan Tarif Air</span><span class="toc-dots"></span><span>9</span></div>
+  <div class="toc-entry sub"><span>3.4 &nbsp; Pengaturan Biaya Pemasangan</span><span class="toc-dots"></span><span>10</span></div>
+  <div class="toc-entry sub"><span>3.5 &nbsp; Rekap dan Laporan Bulanan</span><span class="toc-dots"></span><span>11</span></div>
+  <div class="toc-entry sub"><span>3.6 &nbsp; Export Laporan ke Excel</span><span class="toc-dots"></span><span>13</span></div>
+
+  <div class="toc-entry bab">
+    <span>BAB 4 — Panduan Petugas Air</span>
+    <span class="toc-dots"></span>
+    <span>13</span>
+  </div>
+  <div class="toc-entry sub"><span>4.1 &nbsp; Pencatatan Meteran Bulanan</span><span class="toc-dots"></span><span>13</span></div>
+  <div class="toc-entry sub"><span>4.2 &nbsp; Pencatatan Pembayaran Tagihan</span><span class="toc-dots"></span><span>15</span></div>
+  <div class="toc-entry sub"><span>4.3 &nbsp; Pembayaran Pemasangan</span><span class="toc-dots"></span><span>17</span></div>
+  <div class="toc-entry sub"><span>4.4 &nbsp; Dashboard dan Statistik</span><span class="toc-dots"></span><span>18</span></div>
+
+  <div class="toc-entry bab">
+    <span>BAB 5 — Fitur Bersama</span>
+    <span class="toc-dots"></span>
+    <span>19</span>
+  </div>
+  <div class="toc-entry sub"><span>5.1 &nbsp; Mengelola Profil Akun</span><span class="toc-dots"></span><span>19</span></div>
+
+  <div class="toc-entry bab">
+    <span>BAB 6 — Pertanyaan Umum (FAQ)</span>
+    <span class="toc-dots"></span>
+    <span>20</span>
+  </div>
+
+  <div class="toc-entry bab">
+    <span>BAB 7 — Panduan Troubleshooting</span>
+    <span class="toc-dots"></span>
+    <span>22</span>
+  </div>
+
+  <div class="toc-entry bab">
+    <span>Lampiran — Glosari Istilah</span>
+    <span class="toc-dots"></span>
+    <span>24</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     BAB 1 — PENGENALAN SISTEM
+══════════════════════════════════════════════════════════════ -->
+<div class="page chapter-break">
+  <div class="chapter-header">
+    <div class="chapter-number">01</div>
+    <div class="chapter-info">
+      <h2>Pengenalan Sistem</h2>
+      <p>Kenali sistem sebelum mulai menggunakannya</p>
+    </div>
+  </div>
+
+  <h3>1.1 Apa Itu Sistem Ini?</h3>
+  <p>
+    <strong>Tirta Anugerah</strong> adalah sistem informasi berbasis website yang dirancang khusus untuk membantu pengelolaan air bersih di Dusun Sragan dan sekitarnya. Sistem ini menggantikan cara lama pencatatan menggunakan kertas dan buku catatan manual yang sering kali rentan hilang, rusak, atau sulit ditelusuri.
+  </p>
+  <p>
+    Dengan sistem ini, seluruh proses mulai dari <strong>pencatatan angka meteran</strong>, <strong>perhitungan tagihan</strong>, hingga <strong>pencatatan pembayaran</strong> dilakukan secara digital. Data tersimpan aman di server dan dapat diakses kapan saja melalui HP maupun laptop tanpa memerlukan keahlian komputer khusus.
+  </p>
+
+  <div class="info-box">
+    <h5>✨ Keunggulan Sistem Tirta Anugerah</h5>
+    <ul>
+      <li><strong>Otomatis:</strong> Tagihan dihitung otomatis oleh sistem, tidak perlu hitung manual lagi</li>
+      <li><strong>Akurat:</strong> Tidak ada risiko salah hitung karena semua dilakukan secara digital</li>
+      <li><strong>Mudah diakses:</strong> Bisa digunakan dari HP langsung di lapangan saat mencatat meteran</li>
+      <li><strong>Riwayat lengkap:</strong> Semua data bulan-bulan lalu tersimpan dan bisa dilihat kapan saja</li>
+      <li><strong>Laporan siap cetak:</strong> Rekap bulanan bisa diunduh dalam format Excel setiap saat</li>
+    </ul>
+  </div>
+
+  <h3>1.2 Perbedaan Peran Pengguna</h3>
+  <p>
+    Sistem ini memiliki dua jenis peran pengguna dengan tingkat akses yang berbeda. Setiap pengguna hanya bisa mengakses fitur sesuai peran yang diberikan oleh pengelola.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Fitur / Hak Akses</th>
+        <th style="text-align:center">Pengelola</th>
+        <th style="text-align:center">Petugas Air</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Lihat Dashboard &amp; Statistik</td><td style="text-align:center" class="check-yes">✔</td><td style="text-align:center" class="check-yes">✔</td></tr>
+      <tr><td>Catat Meteran Bulanan</td><td style="text-align:center" class="check-yes">✔</td><td style="text-align:center" class="check-yes">✔</td></tr>
+      <tr><td>Catat Pembayaran Tagihan Air</td><td style="text-align:center" class="check-yes">✔</td><td style="text-align:center" class="check-yes">✔</td></tr>
+      <tr><td>Catat Pembayaran Pemasangan</td><td style="text-align:center" class="check-yes">✔</td><td style="text-align:center" class="check-yes">✔</td></tr>
+      <tr><td>Edit Profil Akun Sendiri</td><td style="text-align:center" class="check-yes">✔</td><td style="text-align:center" class="check-yes">✔</td></tr>
+      <tr><td>Kelola Data Warga (Tambah / Ubah / Hapus)</td><td style="text-align:center" class="check-yes">✔</td><td style="text-align:center" class="check-no">✗</td></tr>
+      <tr><td>Kelola Akun Pengguna</td><td style="text-align:center" class="check-yes">✔</td><td style="text-align:center" class="check-no">✗</td></tr>
+      <tr><td>Atur Tarif Air</td><td style="text-align:center" class="check-yes">✔</td><td style="text-align:center" class="check-no">✗</td></tr>
+      <tr><td>Atur Biaya Pemasangan</td><td style="text-align:center" class="check-yes">✔</td><td style="text-align:center" class="check-no">✗</td></tr>
+      <tr><td>Lihat Rekap &amp; Export Excel</td><td style="text-align:center" class="check-yes">✔</td><td style="text-align:center" class="check-no">✗</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    <strong>Pengelola</strong> adalah orang yang bertanggung jawab penuh terhadap pengelolaan sistem, termasuk menentukan tarif, mendaftarkan warga baru, dan membuat laporan keuangan bulanan. Biasanya peran ini dipegang oleh ketua atau pengurus inti Tirta Anugerah.
+  </p>
+  <p>
+    <strong>Petugas Air</strong> adalah orang yang bertugas di lapangan: keliling ke rumah warga untuk membaca meteran dan mencatat pembayaran. Peran ini diberikan kepada anggota yang dipercaya untuk melakukan kegiatan operasional harian.
+  </p>
+
+  <h3>1.3 Halaman Beranda Publik</h3>
+  <p>
+    Sistem ini memiliki halaman beranda yang bisa diakses oleh siapa saja — termasuk warga biasa — tanpa perlu login. Halaman ini menampilkan informasi umum seperti total warga yang terlayani, total pemakaian air bulan berjalan, grafik tren konsumsi air 6 bulan terakhir, serta distribusi warga antara Dusun Sragan dan wilayah Luar Sragan. Tujuannya adalah memberikan transparansi informasi kepada masyarakat.
+  </p>
+
+  <div class="page-footer">
+    <span>Sistem Informasi Air Bersih Tirta Anugerah</span>
+    <span>BAB 1 — Pengenalan Sistem</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     BAB 2 — LOGIN
+══════════════════════════════════════════════════════════════ -->
+<div class="page chapter-break">
+  <div class="chapter-header">
+    <div class="chapter-number">02</div>
+    <div class="chapter-info">
+      <h2>Cara Login dan Memulai</h2>
+      <p>Langkah pertama sebelum menggunakan sistem</p>
+    </div>
+  </div>
+
+  <h3>2.1 Cara Login ke Sistem</h3>
+  <p>
+    Untuk dapat menggunakan seluruh fitur sistem, Anda harus login terlebih dahulu menggunakan akun yang telah diberikan oleh pengelola. Pastikan Anda sudah memiliki <strong>username</strong> dan <strong>password</strong> sebelum memulai.
+  </p>
+
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Buka browser di HP atau laptop Anda (Chrome, Firefox, atau browser lain yang Anda miliki).</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Ketik <strong>alamat website Tirta Anugerah</strong> di kolom alamat browser, lalu tekan Enter.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Halaman login akan muncul dengan dua kolom isian: <strong>Username</strong> dan <strong>Password</strong>.</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">Ketik username Anda. <em>Ingat: username menggunakan huruf kecil semua, contoh: <code>budi123</code></em>.</div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-text">Ketik password Anda. Password tidak akan ditampilkan — hal ini normal untuk keamanan.</div></div>
+    <div class="step"><div class="step-num">6</div><div class="step-text">Klik tombol <strong>"Masuk"</strong> atau tekan Enter.</div></div>
+    <div class="step"><div class="step-num">7</div><div class="step-text">Jika berhasil, sistem otomatis mengarahkan Anda ke <strong>halaman Dashboard</strong>. Anda sudah siap menggunakan sistem!</div></div>
+  </div>
+
+  <div class="callout warning">
+    <div class="callout-icon">⚠️</div>
+    <div class="callout-body">
+      <strong>Perhatikan saat login:</strong>
+      <ul>
+        <li>Username harus huruf kecil semua. <code>Budi123</code> tidak sama dengan <code>budi123</code></li>
+        <li>Pastikan tombol <strong>Caps Lock</strong> tidak aktif saat mengetik username dan password</li>
+        <li>Jika muncul pesan "Login gagal" atau "Kredensial tidak cocok", periksa kembali username dan password Anda</li>
+        <li>Jika lupa password, hubungi pengelola untuk meminta reset — tidak ada fitur "lupa password" mandiri</li>
+        <li>Jangan berbagi akun dengan orang lain. Satu akun satu orang</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>2.2 Cara Logout / Keluar dari Sistem</h3>
+  <p>
+    Setelah selesai bekerja, sangat penting untuk keluar (logout) dari sistem. Ini menjaga keamanan data, terutama jika Anda menggunakan perangkat yang dipakai bersama.
+  </p>
+
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Klik <strong>nama akun Anda</strong> yang tertera di pojok kanan atas layar.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Pilih menu <strong>"Keluar"</strong> atau <strong>"Logout"</strong> dari menu yang muncul.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Sistem akan kembali ke halaman login. Anda telah berhasil keluar dari sistem.</div></div>
+  </div>
+
+  <div class="callout info">
+    <div class="callout-icon">💡</div>
+    <div class="callout-body">
+      <strong>Tips Keamanan:</strong>
+      <p>Biasakan selalu logout setiap kali selesai menggunakan sistem, terutama jika menggunakan HP atau laptop yang dipakai oleh lebih dari satu orang.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Sistem Informasi Air Bersih Tirta Anugerah</span>
+    <span>BAB 2 — Cara Login dan Memulai</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     BAB 3 — PANDUAN PENGELOLA
+══════════════════════════════════════════════════════════════ -->
+<div class="page chapter-break">
+  <div class="chapter-header">
+    <div class="chapter-number">03</div>
+    <div class="chapter-info">
+      <h2>Panduan Pengelola</h2>
+      <p>Fitur-fitur yang hanya dapat diakses oleh Pengelola</p>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <div class="callout-icon">🔑</div>
+    <div class="callout-body">
+      <strong>Untuk Pengelola:</strong>
+      <p>Seluruh isi BAB 3 ini hanya bisa dilakukan oleh akun dengan peran <strong>Pengelola</strong>. Jika Anda adalah Petugas Air, silakan langsung ke <strong>BAB 4</strong>.</p>
+    </div>
+  </div>
+
+  <!-- ── 3.1 AKUN ── -->
+  <h3>3.1 Manajemen Akun Pengguna</h3>
+  <p class="section-intro">
+    Menu Akun digunakan untuk membuat, mengubah, dan menghapus akun login untuk seluruh pengguna sistem — baik pengelola maupun petugas air.
+  </p>
+
+  <h4>3.1.1 Melihat Daftar Akun</h4>
+  <p>Halaman ini menampilkan tabel semua pengguna yang terdaftar, lengkap dengan nama, username, dan perannya. Gunakan kotak pencarian untuk menemukan akun tertentu dengan cepat.</p>
+
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Klik menu <strong>"Akun"</strong> di navigasi utama.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Daftar semua akun pengguna akan ditampilkan dalam tabel.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Gunakan kotak pencarian jika ingin mencari akun berdasarkan nama atau username.</div></div>
+  </div>
+
+  <h4>3.1.2 Menambah Akun Baru</h4>
+  <p>Lakukan langkah ini setiap kali ada petugas baru yang perlu diberikan akses ke sistem.</p>
+
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Di halaman daftar akun, klik tombol <strong>"Tambah Akun"</strong>.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Isi formulir yang muncul:
+      <ul style="margin-top:6px">
+        <li><strong>Nama Lengkap</strong> — contoh: <em>Ahmad Santoso</em></li>
+        <li><strong>Username</strong> — huruf kecil, tanpa spasi, contoh: <em>ahmad123</em></li>
+        <li><strong>Peran</strong> — pilih <em>"Pengelola"</em> atau <em>"Petugas"</em></li>
+        <li><strong>Password</strong> — buat password yang kuat</li>
+        <li><strong>Konfirmasi Password</strong> — ketik ulang password yang sama</li>
+      </ul>
+    </div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Klik tombol <strong>"Simpan"</strong>. Akun baru akan langsung muncul di daftar.</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">Sampaikan username dan password kepada petugas yang bersangkutan secara langsung.</div></div>
+  </div>
+
+  <div class="callout warning">
+    <div class="callout-icon">⚠️</div>
+    <div class="callout-body">
+      <strong>Aturan Username dan Password:</strong>
+      <ul>
+        <li>Username harus <strong>unik</strong> — tidak boleh sama dengan akun lain yang sudah ada</li>
+        <li>Username harus menggunakan <strong>huruf kecil semua</strong> (tidak boleh ada huruf kapital atau spasi)</li>
+        <li>Password dan konfirmasi password harus <strong>sama persis</strong></li>
+        <li>Catat username dan password di tempat yang aman sebelum diserahkan ke petugas</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>3.1.3 Mengubah Data Akun</h4>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Klik tombol <strong>"Edit"</strong> (ikon pensil) pada baris akun yang ingin diubah.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Ubah data yang diperlukan: nama, username, atau peran.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Jika ingin ganti password:</strong> isi kolom "Password Baru" dan "Konfirmasi Password Baru".<br><strong>Jika TIDAK ingin ganti password:</strong> kosongkan saja kedua kolom tersebut, password lama tetap berlaku.</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">Klik tombol <strong>"Simpan Perubahan"</strong>.</div></div>
+  </div>
+
+  <h4>3.1.4 Menghapus Akun</h4>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Klik tombol <strong>"Hapus"</strong> (ikon tempat sampah) pada baris akun yang ingin dihapus.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Konfirmasi penghapusan pada dialog yang muncul.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Akun terhapus dari sistem.</div></div>
+  </div>
+
+  <div class="callout danger">
+    <div class="callout-icon">🚫</div>
+    <div class="callout-body">
+      <strong>Tidak Bisa Hapus Akun Sendiri:</strong>
+      <p>Pengelola tidak dapat menghapus akun dirinya sendiri. Pembatasan ini disengaja untuk mencegah sistem kehilangan semua pengelola aktif. Jika akun Anda perlu dihapus, minta pengelola lain yang melakukannya.</p>
+    </div>
+  </div>
+
+  <!-- ── 3.2 WARGA ── -->
+  <h3>3.2 Manajemen Data Warga</h3>
+  <p class="section-intro">
+    Menu ini digunakan untuk mengelola daftar seluruh warga pelanggan air. Setiap warga yang terdaftar di sini akan muncul di halaman pencatatan meteran dan pembayaran.
+  </p>
+
+  <h4>3.2.1 Melihat Daftar Warga</h4>
+  <p>Halaman ini menampilkan seluruh warga yang terdaftar, diurutkan berdasarkan wilayah, RT, RW, lalu nama. Gunakan kolom pencarian untuk menemukan warga berdasarkan nama atau nomor meteran.</p>
+
+  <div class="callout info">
+    <div class="callout-icon">📍</div>
+    <div class="callout-body">
+      <strong>Dua Kategori Wilayah:</strong>
+      <ul>
+        <li><strong>Dusun Sragan</strong> — warga yang berdomisili di dalam Dusun Sragan dengan RT dan RW yang jelas.</li>
+        <li><strong>Luar Sragan</strong> — warga yang berdomisili di luar Dusun Sragan. Tidak memiliki RT/RW spesifik.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>3.2.2 Menambah Data Warga Baru</h4>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Klik tombol <strong>"Tambah Warga"</strong> di halaman daftar warga.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Isi formulir pendaftaran warga:
+      <ul style="margin-top:6px">
+        <li><strong>Nama Kepala Keluarga</strong> — nama lengkap, contoh: <em>Slamet bin Karyo</em></li>
+        <li><strong>Wilayah</strong> — pilih <em>"Dusun Sragan"</em> atau <em>"Luar Sragan"</em></li>
+        <li><strong>RT</strong> — diisi hanya jika wilayah Dusun Sragan, contoh: <em>3</em></li>
+        <li><strong>RW</strong> — diisi hanya jika wilayah Dusun Sragan, contoh: <em>1</em></li>
+        <li><strong>Nomor Meteran</strong> — sesuaikan dengan nomor fisik yang tertera di meteran warga, contoh: <em>SRG-001</em></li>
+      </ul>
+    </div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Klik tombol <strong>"Simpan"</strong>.</div></div>
+  </div>
+
+  <div class="callout success">
+    <div class="callout-icon">✅</div>
+    <div class="callout-body">
+      <strong>Tagihan Pemasangan Dibuat Otomatis:</strong>
+      <p>Setiap kali warga baru ditambahkan, sistem secara otomatis membuat tagihan biaya pemasangan (jika ada biaya pemasangan yang aktif). Anda tidak perlu membuat tagihan pemasangan secara terpisah.</p>
+    </div>
+  </div>
+
+  <div class="callout warning">
+    <div class="callout-icon">⚠️</div>
+    <div class="callout-body">
+      <strong>Pastikan Nomor Meteran Benar:</strong>
+      <p>Nomor meteran harus sesuai persis dengan yang tertera di meteran fisik di rumah warga. Nomor ini digunakan untuk identifikasi saat pencatatan di lapangan. Untuk warga Luar Sragan, kolom RT dan RW tidak perlu diisi.</p>
+    </div>
+  </div>
+
+  <h4>3.2.3 Mengubah Data Warga</h4>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Klik tombol <strong>"Edit"</strong> pada baris warga yang ingin diubah.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Halaman edit terbuka dengan data warga saat ini.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Ubah data yang diperlukan sesuai kebutuhan.</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">Klik tombol <strong>"Simpan Perubahan"</strong>.</div></div>
+  </div>
+
+  <h4>3.2.4 Menghapus Data Warga</h4>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Klik tombol <strong>"Hapus"</strong> pada baris warga yang ingin dihapus.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Konfirmasi penghapusan pada dialog yang muncul.</div></div>
+  </div>
+
+  <div class="callout danger">
+    <div class="callout-icon">🛑</div>
+    <div class="callout-body">
+      <strong>PERINGATAN KERAS — Data Tidak Bisa Dikembalikan!</strong>
+      <p>Menghapus data warga akan menghapus <strong>seluruh riwayat pencatatan meteran dan pembayaran</strong> warga tersebut secara permanen. Data yang sudah dihapus tidak dapat dipulihkan. Pastikan tindakan ini benar-benar disengaja.</p>
+    </div>
+  </div>
+
+  <!-- ── 3.3 TARIF ── -->
+  <h3>3.3 Pengaturan Tarif Air</h3>
+  <p class="section-intro">
+    Tarif air menentukan berapa biaya yang harus dibayar setiap warga per bulan. Tarif dapat berbeda antara wilayah Dusun Sragan dan Luar Sragan.
+  </p>
+
+  <h4>3.3.1 Memahami Komponen Tarif</h4>
+  <p>Tagihan air setiap bulan terdiri dari dua komponen:</p>
+
+  <table>
+    <thead><tr><th>Komponen</th><th>Penjelasan</th><th>Sifat</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Harga per m³</strong></td><td>Biaya per kubik air yang digunakan. Makin banyak pemakaian, makin besar biaya ini.</td><td>Variabel (tergantung pemakaian)</td></tr>
+      <tr><td><strong>Dana Meter</strong></td><td>Biaya tetap bulanan untuk perawatan meteran air. Tidak tergantung pada seberapa banyak air yang digunakan.</td><td>Tetap setiap bulan</td></tr>
+    </tbody>
+  </table>
+
+  <div class="formula">
+    <span class="comment">── Contoh Perhitungan Tagihan ──</span><br>
+    Pemakaian bulan ini &nbsp; : 12 m³<br>
+    Harga per m³ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Rp 2.000<br>
+    Dana Meter &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Rp 3.000<br><br>
+    <span class="highlight">Harga Air &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 12 × Rp 2.000 = Rp 24.000</span><br>
+    <span class="highlight">Total Tagihan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= Rp 24.000 + Rp 3.000 = Rp 27.000</span>
+  </div>
+
+  <h4>3.3.2 Cara Mengubah Tarif Air</h4>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Buka halaman <strong>"Pembayaran"</strong> dari menu navigasi.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Temukan panel <strong>"Pengaturan Tarif"</strong> di bagian bawah atau samping halaman.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Pilih <strong>wilayah</strong> yang tarifnya ingin diubah: <em>Sragan</em> atau <em>Luar Sragan</em>.</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">Isi kolom:
+      <ul style="margin-top:6px">
+        <li><strong>Harga per m³</strong> — dalam rupiah tanpa titik pemisah, contoh: <em>2000</em></li>
+        <li><strong>Dana Meter</strong> — dalam rupiah tanpa titik pemisah, contoh: <em>3000</em></li>
+        <li><strong>Berlaku Mulai</strong> — pilih bulan dan tahun tarif ini mulai berlaku</li>
+      </ul>
+    </div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-text">Klik tombol <strong>"Simpan Tarif"</strong>.</div></div>
+  </div>
+
+  <div class="callout info">
+    <div class="callout-icon">💡</div>
+    <div class="callout-body">
+      <strong>Tarif Berlaku ke Depan:</strong>
+      <p>Tarif baru hanya berlaku mulai bulan yang dipilih. Data tagihan bulan-bulan sebelumnya tidak akan berubah. Sistem menyimpan seluruh riwayat perubahan tarif secara otomatis. Jika tarif Sragan dan Luar Sragan sama, Anda perlu menyimpan dua kali — sekali untuk masing-masing wilayah.</p>
+    </div>
+  </div>
+
+  <!-- ── 3.4 BIAYA PEMASANGAN ── -->
+  <h3>3.4 Pengaturan Biaya Pemasangan</h3>
+  <p class="section-intro">
+    Biaya pemasangan adalah biaya satu kali yang dibebankan kepada warga baru saat pertama kali mendaftar sebagai pelanggan air.
+  </p>
+
+  <h4>3.4.1 Memahami Biaya Pemasangan</h4>
+  <p>
+    Ketika seorang warga baru mendaftar dan datanya diinput ke sistem, tagihan biaya pemasangan akan otomatis dibuat. Warga dapat membayar biaya ini secara <strong>mencicil</strong> — tidak harus lunas sekaligus. Biaya pemasangan bersifat terpisah dari tagihan air bulanan.
+  </p>
+
+  <h4>3.4.2 Mengatur Biaya Pemasangan</h4>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Buka halaman <strong>"Pembayaran Pemasangan"</strong> dari menu navigasi.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Temukan panel <strong>"Pengaturan Biaya Pemasangan"</strong>.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Isi:
+      <ul style="margin-top:6px">
+        <li><strong>Nominal Biaya</strong> — dalam rupiah tanpa titik, contoh: <em>500000</em></li>
+        <li><strong>Berlaku Mulai</strong> — bulan dan tahun biaya ini mulai diberlakukan</li>
+      </ul>
+    </div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">Klik tombol <strong>"Simpan Biaya"</strong>.</div></div>
+  </div>
+
+  <div class="callout info">
+    <div class="callout-icon">ℹ️</div>
+    <div class="callout-body">
+      <strong>Hanya Berlaku untuk Warga Baru:</strong>
+      <p>Perubahan biaya pemasangan hanya berlaku untuk warga yang didaftarkan setelah tanggal berlaku biaya tersebut. Warga lama yang sudah terdaftar sebelumnya tidak akan terpengaruh.</p>
+    </div>
+  </div>
+
+  <!-- ── 3.5 REKAP ── -->
+  <h3>3.5 Rekap dan Laporan Bulanan</h3>
+  <p class="section-intro">
+    Halaman Rekap adalah laporan keuangan lengkap seluruh warga untuk satu bulan tertentu. Ini adalah fitur terpenting bagi pengelola untuk memantau kondisi keuangan Tirta Anugerah.
+  </p>
+
+  <h4>3.5.1 Cara Membuka Rekap</h4>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Klik menu <strong>"Rekap"</strong> di navigasi utama.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Pilih bulan yang ingin ditampilkan menggunakan filter bulan di bagian atas halaman.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Tabel rekap akan dimuat ulang secara otomatis menampilkan data bulan tersebut.</div></div>
+  </div>
+
+  <h4>3.5.2 Memahami Kolom-Kolom Rekap</h4>
+
+  <table>
+    <thead><tr><th>Kolom</th><th>Penjelasan</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Nama</strong></td><td>Nama kepala keluarga pelanggan</td></tr>
+      <tr><td><strong>Lokasi</strong></td><td>RT/RW (untuk Sragan) atau "Luar Sragan"</td></tr>
+      <tr><td><strong>Meter Awal</strong></td><td>Angka meteran bulan lalu (angka awal periode)</td></tr>
+      <tr><td><strong>Meter Akhir</strong></td><td>Angka meteran bulan ini yang dibaca petugas</td></tr>
+      <tr><td><strong>Pemakaian (m³)</strong></td><td>Selisih: Meter Akhir dikurangi Meter Awal</td></tr>
+      <tr><td><strong>Tarif/m³</strong></td><td>Harga air per kubik yang berlaku bulan ini</td></tr>
+      <tr><td><strong>Dana Meter</strong></td><td>Biaya tetap bulanan untuk perawatan meteran</td></tr>
+      <tr><td><strong>Harga Air</strong></td><td>Pemakaian × Tarif per m³</td></tr>
+      <tr><td><strong>Tagihan</strong></td><td>Harga Air + Dana Meter (tagihan murni bulan ini)</td></tr>
+      <tr><td><strong>Titip Lama</strong></td><td>Sisa hutang atau kelebihan bayar dari bulan sebelumnya</td></tr>
+      <tr><td><strong>Total Tagihan</strong></td><td>Tagihan + Titip Lama (jumlah yang sebenarnya harus dibayar)</td></tr>
+      <tr><td><strong>Terbayar</strong></td><td>Uang yang sudah diterima dari warga bulan ini</td></tr>
+      <tr><td><strong>Hutang / Titip</strong></td><td>Sisa setelah dikurangi pembayaran (warna menunjukkan status)</td></tr>
+    </tbody>
+  </table>
+
+  <h4>3.5.3 Memahami Warna di Kolom "Hutang / Titip"</h4>
+
+  <div class="info-box">
+    <h5>🎨 Kode Warna Kolom Hutang / Titip</h5>
+    <ul>
+      <li>🔴 <strong>Merah</strong> — Warga masih memiliki <strong>hutang/tunggakan</strong> yang belum dibayar. Tagihan terbawa ke bulan depan.</li>
+      <li>🟢 <strong>Hijau</strong> — Warga <strong>lebih bayar</strong>, kelebihan menjadi kredit/titip yang akan dikurangi dari tagihan bulan depan.</li>
+      <li>⚫ <strong>Abu-abu/nol</strong> — Warga membayar <strong>tepat sesuai tagihan</strong>. Lunas, tidak ada sisa apapun.</li>
+    </ul>
+  </div>
+
+  <div class="callout info">
+    <div class="callout-icon">ℹ️</div>
+    <div class="callout-body">
+      <strong>Warga yang Belum Dicatat Meterannya:</strong>
+      <p>Warga yang belum dicatat meterannya pada bulan yang dipilih tetap akan muncul di tabel, namun kolom pemakaian dan tagihan menampilkan nilai nol atau tanda strip (–). Segera minta petugas untuk melengkapi pencatatan.</p>
+    </div>
+  </div>
+
+  <!-- ── 3.6 EXPORT ── -->
+  <h3>3.6 Export Laporan ke Excel</h3>
+  <p>Rekap bulanan bisa diunduh dalam format file Excel untuk keperluan arsip, pelaporan, atau dicetak.</p>
+
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Buka halaman <strong>Rekap</strong> dan pilih bulan yang ingin diexport.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Klik tombol <strong>"Export Excel"</strong> atau <strong>"Unduh Excel"</strong> di bagian atas halaman.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">File Excel otomatis terunduh ke perangkat Anda dengan nama:<br><code>Rekap-Tagihan-[TAHUN-BULAN].xlsx</code></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">Buka file menggunakan <strong>Microsoft Excel</strong> atau <strong>Google Sheets</strong>.</div></div>
+  </div>
+
+  <div class="callout success">
+    <div class="callout-icon">📊</div>
+    <div class="callout-body">
+      <strong>Isi File Excel:</strong>
+      <ul>
+        <li>Judul laporan: "REKAPITULASI PENGGUNAAN &amp; TAGIHAN AIR TIRTA ANUGERAH"</li>
+        <li>Periode bulan dan tahun</li>
+        <li>Seluruh kolom sama persis dengan tampilan di website</li>
+        <li>Kode warna merah/hijau untuk kolom hutang/titip</li>
+        <li>Baris total keseluruhan di bagian bawah tabel</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Sistem Informasi Air Bersih Tirta Anugerah</span>
+    <span>BAB 3 — Panduan Pengelola</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     BAB 4 — PANDUAN PETUGAS AIR
+══════════════════════════════════════════════════════════════ -->
+<div class="page chapter-break">
+  <div class="chapter-header">
+    <div class="chapter-number">04</div>
+    <div class="chapter-info">
+      <h2>Panduan Petugas Air</h2>
+      <p>Fitur operasional harian untuk petugas di lapangan</p>
+    </div>
+  </div>
+
+  <!-- ── 4.1 PENCATATAN ── -->
+  <h3>4.1 Pencatatan Meteran Bulanan</h3>
+  <p class="section-intro">
+    Pencatatan meteran adalah kegiatan inti petugas setiap bulan — membaca angka meteran fisik di rumah warga dan memasukkannya ke sistem. Sistem akan otomatis menghitung pemakaian.
+  </p>
+
+  <h4>4.1.1 Cara Kerja Perhitungan Pemakaian</h4>
+  <p>Setiap bulan, petugas membaca angka yang tertera di meteran air fisik. Angka ini diinput ke sistem, lalu sistem menghitung pemakaian secara otomatis:</p>
+
+  <div class="formula">
+    <span class="comment">── Rumus Perhitungan Pemakaian ──</span><br><br>
+    <span class="highlight">Pemakaian = Angka Meteran Bulan Ini − Angka Meteran Bulan Lalu</span><br><br>
+    <span class="comment">Contoh:</span><br>
+    Meteran bulan lalu &nbsp;: 1.245<br>
+    Meteran bulan ini &nbsp;&nbsp;: 1.257<br>
+    <span class="highlight">Pemakaian &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 1.257 − 1.245 = 12 m³</span><br><br>
+    <span class="comment">Untuk warga baru (belum pernah dicatat): angka lalu = 0</span>
+  </div>
+
+  <h4>4.1.2 Melihat Status Pencatatan Bulan Ini</h4>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Klik menu <strong>"Pencatatan"</strong> di navigasi utama.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Pastikan filter bulan di atas halaman sudah menampilkan <strong>bulan yang benar</strong>.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Lihat status di setiap baris warga:
+      <ul style="margin-top:6px">
+        <li>🟢 <strong>Sudah Dicatat</strong> — meteran warga ini sudah diinput bulan ini</li>
+        <li>⚪ <strong>Belum Dicatat</strong> — meteran warga ini belum diinput, perlu segera dicatat</li>
+      </ul>
+    </div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">Gunakan kolom pencarian untuk menemukan warga tertentu dengan cepat.</div></div>
+  </div>
+
+  <h4>4.1.3 Cara Input Angka Meteran</h4>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Buka halaman <strong>Pencatatan</strong> dan pastikan bulan sudah benar.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Temukan baris warga yang akan dicatat.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Perhatikan angka <strong>"Meteran Bulan Lalu"</strong> yang ditampilkan sistem — sesuaikan dengan catatan Anda.</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">Klik tombol <strong>"Catat Meteran"</strong> (atau ikon pensil) pada baris warga tersebut.</div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-text">Formulir input muncul. Isi kolom <strong>"Angka Meteran Sekarang"</strong> dengan angka yang tertera di meteran fisik di rumah warga.</div></div>
+    <div class="step"><div class="step-num">6</div><div class="step-text">Periksa kembali angka yang Anda ketik sebelum menekan Simpan.</div></div>
+    <div class="step"><div class="step-num">7</div><div class="step-text">Klik tombol <strong>"Simpan"</strong>. Sistem otomatis menghitung pemakaian dan menyimpan data.</div></div>
+    <div class="step"><div class="step-num">8</div><div class="step-text">Status baris warga berubah menjadi <strong>"Sudah Dicatat"</strong> sebagai konfirmasi.</div></div>
+  </div>
+
+  <div class="callout tip">
+    <div class="callout-icon">💡</div>
+    <div class="callout-body">
+      <strong>Tips Petugas Lapangan:</strong>
+      <p>Input langsung dari HP saat masih berdiri di depan meteran warga. Cara ini lebih akurat karena Anda bisa membaca angka meteran secara langsung tanpa risiko salah catat di kertas terlebih dahulu.</p>
+    </div>
+  </div>
+
+  <div class="callout danger">
+    <div class="callout-icon">🚫</div>
+    <div class="callout-body">
+      <strong>Dua Hal yang Akan Ditolak Sistem:</strong>
+      <ul>
+        <li><strong>Input ganda:</strong> Jika warga sudah dicatat bulan ini, sistem menolak input kedua kali untuk bulan yang sama.</li>
+        <li><strong>Angka lebih kecil:</strong> Jika angka yang diinput lebih kecil dari meteran bulan lalu, sistem menolak dan menampilkan pesan error. Meteran fisik tidak bisa mundur — periksa kembali angka yang Anda baca.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout warning">
+    <div class="callout-icon">⚠️</div>
+    <div class="callout-body">
+      <strong>Hal yang Sering Salah:</strong>
+      <ul>
+        <li>Salah ketik angka meteran — selalu periksa sebelum klik Simpan</li>
+        <li>Lupa mengubah filter bulan — pastikan bulan di halaman sudah sesuai bulan pencatatan</li>
+        <li>Mencatat angka meteran warga yang salah karena daftar tidak diurutkan — gunakan fitur pencarian nama atau nomor meteran</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── 4.2 PEMBAYARAN ── -->
+  <h3>4.2 Pencatatan Pembayaran Tagihan Air</h3>
+  <p class="section-intro">
+    Setelah meteran dicatat, warga dapat membayar tagihan airnya. Halaman pembayaran digunakan untuk mencatat berapa uang yang diterima dari setiap warga.
+  </p>
+
+  <h4>4.2.1 Memahami Sistem Pembayaran</h4>
+  <p>Sistem mendukung tiga skenario pembayaran:</p>
+
+  <table>
+    <thead><tr><th>Skenario</th><th>Keterangan</th><th>Efek Bulan Depan</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Bayar Lunas</strong></td>
+        <td>Membayar tepat sesuai total tagihan</td>
+        <td>Saldo nol, tidak ada sisa</td>
+      </tr>
+      <tr>
+        <td><strong>Bayar Sebagian</strong></td>
+        <td>Membayar kurang dari total tagihan</td>
+        <td>Sisa hutang terbawa sebagai "Titip Lama" (merah) bulan depan</td>
+      </tr>
+      <tr>
+        <td><strong>Lebih Bayar</strong></td>
+        <td>Membayar lebih dari total tagihan</td>
+        <td>Kelebihan terbawa sebagai "Titip Lama" (hijau/kredit) bulan depan</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>4.2.2 Cara Membaca Informasi Tagihan Warga</h4>
+  <p>Sebelum mencatat pembayaran, perhatikan rincian tagihan yang ditampilkan sistem:</p>
+
+  <div class="info-box">
+    <h5>📋 Rincian Tagihan yang Ditampilkan</h5>
+    <ul>
+      <li><strong>Tagihan Bulan Ini</strong> — biaya air murni bulan ini (harga air + dana meter)</li>
+      <li><strong>Saldo Awal / Titip Lama</strong> — hutang atau kelebihan bayar dari bulan sebelumnya</li>
+      <li><strong>Total Harus Dibayar</strong> — jumlah yang seharusnya dibayar warga (Tagihan Bulan Ini + Saldo Awal)</li>
+    </ul>
+  </div>
+
+  <h4>4.2.3 Cara Mencatat Pembayaran</h4>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Buka halaman <strong>"Pembayaran"</strong> dari navigasi.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Pastikan filter bulan sudah menunjukkan bulan yang benar.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Cari warga yang ingin dicatat pembayarannya (gunakan pencarian jika perlu).</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">Perhatikan informasi tagihan: <strong>Tagihan Bulan Ini</strong>, <strong>Saldo Awal</strong>, dan <strong>Total Harus Dibayar</strong>.</div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-text">Klik tombol <strong>"Bayar"</strong> atau <strong>"Catat Pembayaran"</strong> pada baris warga tersebut.</div></div>
+    <div class="step"><div class="step-num">6</div><div class="step-text">Isi kolom <strong>"Jumlah Dibayar"</strong> dengan uang yang diterima dari warga (dalam rupiah, tanpa titik).</div></div>
+    <div class="step"><div class="step-num">7</div><div class="step-text">Klik tombol <strong>"Simpan Pembayaran"</strong>.</div></div>
+    <div class="step"><div class="step-num">8</div><div class="step-text">Sistem menampilkan konfirmasi berisi sisa saldo atau keterangan "Lunas".</div></div>
+  </div>
+
+  <div class="callout warning">
+    <div class="callout-icon">⚠️</div>
+    <div class="callout-body">
+      <strong>Pencatatan Meteran Harus Dilakukan Lebih Dulu:</strong>
+      <p>Warga yang belum dicatat meterannya untuk bulan berjalan <strong>tidak dapat diproses pembayarannya</strong>. Pastikan pencatatan meteran sudah dilakukan terlebih dahulu sebelum mencatat pembayaran.</p>
+    </div>
+  </div>
+
+  <!-- ── 4.3 PEMASANGAN ── -->
+  <h3>4.3 Pembayaran Pemasangan</h3>
+  <p class="section-intro">
+    Menu ini digunakan untuk mencatat cicilan atau pelunasan biaya pemasangan dari warga baru. Terpisah dari tagihan air bulanan.
+  </p>
+
+  <h4>4.3.1 Melihat Daftar Tagihan Pemasangan</h4>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Klik menu <strong>"Pembayaran Pemasangan"</strong> dari navigasi.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Daftar semua warga beserta status tagihan pemasangannya ditampilkan.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Gunakan filter <strong>Status</strong> untuk menyaring: tampilkan hanya yang "Belum Lunas" atau "Lunas".</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">Gunakan pencarian untuk menemukan warga tertentu.</div></div>
+  </div>
+
+  <p>Data yang ditampilkan per warga: nama, total biaya pemasangan, sudah dibayar, sisa tagihan, dan status (Belum Lunas / Lunas).</p>
+
+  <h4>4.3.2 Mencatat Cicilan atau Pelunasan</h4>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Temukan baris warga yang ingin membayar/mencicil.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Klik tombol <strong>"Bayar"</strong> pada baris tersebut.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Isi kolom <strong>"Jumlah Bayar"</strong>:
+      <ul style="margin-top:6px">
+        <li>Untuk <strong>cicilan</strong>: isi sebagian saja (tidak boleh melebihi sisa tagihan)</li>
+        <li>Untuk <strong>pelunasan</strong>: isi dengan jumlah sisa tagihan yang ditampilkan</li>
+      </ul>
+    </div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">Klik tombol <strong>"Simpan"</strong>. Sistem otomatis memperbarui status tagihan.</div></div>
+  </div>
+
+  <div class="callout info">
+    <div class="callout-icon">ℹ️</div>
+    <div class="callout-body">
+      <strong>Status Lunas Otomatis:</strong>
+      <p>Ketika jumlah yang dibayar sudah mencukupi total biaya pemasangan, sistem secara otomatis mengubah status menjadi "Lunas" dan tombol Bayar tidak akan muncul lagi pada baris tersebut.</p>
+    </div>
+  </div>
+
+  <!-- ── 4.4 DASHBOARD ── -->
+  <h3>4.4 Dashboard dan Statistik</h3>
+  <p class="section-intro">
+    Dashboard adalah halaman utama setelah login. Menampilkan ringkasan dan visualisasi data operasional Tirta Anugerah.
+  </p>
+
+  <h4>4.4.1 Elemen-Elemen Dashboard</h4>
+
+  <table>
+    <thead><tr><th>Elemen</th><th>Penjelasan</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Kartu Total Petugas</strong></td><td>Jumlah pengguna aktif dengan peran petugas yang terdaftar di sistem</td></tr>
+      <tr><td><strong>Kartu Total Warga</strong></td><td>Jumlah seluruh warga pelanggan yang terdaftar</td></tr>
+      <tr><td><strong>Kartu Total Pemakaian</strong></td><td>Total kubik air yang terpakai seluruh warga pada bulan yang dipilih</td></tr>
+      <tr><td><strong>Grafik Tren 6 Bulan</strong></td><td>Grafik garis yang menampilkan total pemakaian air selama 6 bulan terakhir. Berguna untuk melihat pola konsumsi air dari waktu ke waktu.</td></tr>
+      <tr><td><strong>Grafik per RT (Bar Chart)</strong></td><td>Perbandingan pemakaian air antar RT. Membantu mengidentifikasi RT dengan konsumsi tertinggi.</td></tr>
+      <tr><td><strong>Distribusi Warga (Donut)</strong></td><td>Proporsi jumlah warga per RT. Membantu memahami sebaran pelanggan.</td></tr>
+      <tr><td><strong>Status Pencatatan</strong></td><td>Berapa warga sudah dicatat dan belum dicatat meterannya bulan ini, lengkap dengan persentase.</td></tr>
+      <tr><td><strong>Top 5 Pemakaian</strong></td><td>Lima warga dengan pemakaian air terbanyak bulan ini. Berguna untuk mendeteksi pemakaian yang tidak wajar.</td></tr>
+    </tbody>
+  </table>
+
+  <h4>4.4.2 Mengganti Filter Bulan di Dashboard</h4>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Di halaman Dashboard, temukan filter <strong>"Bulan"</strong> di bagian atas halaman.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Klik filter dan pilih bulan/tahun yang ingin dilihat datanya.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Semua kartu statistik dan grafik akan diperbarui secara otomatis.</div></div>
+  </div>
+
+  <div class="page-footer">
+    <span>Sistem Informasi Air Bersih Tirta Anugerah</span>
+    <span>BAB 4 — Panduan Petugas Air</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     BAB 5 — FITUR BERSAMA
+══════════════════════════════════════════════════════════════ -->
+<div class="page chapter-break">
+  <div class="chapter-header">
+    <div class="chapter-number">05</div>
+    <div class="chapter-info">
+      <h2>Fitur Bersama</h2>
+      <p>Fitur yang dapat diakses oleh Pengelola maupun Petugas</p>
+    </div>
+  </div>
+
+  <h3>5.1 Mengelola Profil Akun</h3>
+  <p>Setiap pengguna — baik pengelola maupun petugas — dapat mengubah data profil dan password akun mereka sendiri kapan saja.</p>
+
+  <h4>5.1.1 Cara Mengubah Data Profil</h4>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Klik <strong>nama akun</strong> Anda di pojok kanan atas layar.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Pilih menu <strong>"Profil"</strong> atau <strong>"Edit Profil"</strong>.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Ubah data yang ingin diperbarui: nama lengkap atau username.</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">Klik tombol <strong>"Simpan"</strong>.</div></div>
+  </div>
+
+  <h4>5.1.2 Cara Ganti Password</h4>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-text">Buka halaman Profil seperti langkah di atas.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Cari bagian <strong>"Ganti Password"</strong>.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Isi kolom <strong>"Password Saat Ini"</strong> dengan password lama Anda.</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">Isi kolom <strong>"Password Baru"</strong> dengan password baru yang Anda inginkan.</div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-text">Isi kolom <strong>"Konfirmasi Password Baru"</strong> dengan mengetik ulang password baru tersebut.</div></div>
+    <div class="step"><div class="step-num">6</div><div class="step-text">Klik tombol <strong>"Simpan"</strong>. Password Anda berhasil diperbarui.</div></div>
+  </div>
+
+  <div class="callout tip">
+    <div class="callout-icon">🔐</div>
+    <div class="callout-body">
+      <strong>Tips Membuat Password yang Kuat:</strong>
+      <ul>
+        <li>Gunakan minimal 8 karakter</li>
+        <li>Kombinasikan huruf besar, huruf kecil, angka, dan simbol</li>
+        <li>Hindari menggunakan nama, tanggal lahir, atau informasi yang mudah ditebak</li>
+        <li>Ganti password secara berkala setiap beberapa bulan</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Sistem Informasi Air Bersih Tirta Anugerah</span>
+    <span>BAB 5 — Fitur Bersama</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     BAB 6 — FAQ
+══════════════════════════════════════════════════════════════ -->
+<div class="page chapter-break">
+  <div class="chapter-header">
+    <div class="chapter-number">06</div>
+    <div class="chapter-info">
+      <h2>Pertanyaan Umum (FAQ)</h2>
+      <p>Jawaban untuk pertanyaan yang sering diajukan</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q"><span class="faq-q-icon">Q</span> Apa yang terjadi jika saya salah input angka meteran?</div>
+    <div class="faq-a">
+      <p>Saat ini sistem belum memiliki fitur untuk mengedit pencatatan yang sudah tersimpan secara mandiri. Jika terjadi kesalahan input, segera hubungi <strong>pengelola</strong> untuk meminta penghapusan data yang salah, kemudian lakukan input ulang dengan angka yang benar.</p>
+      <p>Untuk mencegah hal ini, biasakan untuk <strong>memeriksa kembali angka yang diketik</strong> sebelum menekan tombol Simpan, terutama saat menggunakan HP di lapangan yang layarnya lebih kecil.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q"><span class="faq-q-icon">Q</span> Mengapa angka pemakaian warga tampak tidak wajar — terlalu besar atau malah nol?</div>
+    <div class="faq-a">
+      <p>Ada beberapa kemungkinan penyebabnya:</p>
+      <ul>
+        <li><strong>Warga baru pertama kali dicatat</strong> — sistem menganggap meteran awal adalah 0, sehingga seluruh angka meteran saat ini dihitung sebagai pemakaian. Ini normal untuk warga yang baru pertama kali masuk sistem.</li>
+        <li><strong>Meteran fisik baru diganti</strong> — angka dimulai dari nol lagi. Dalam kasus ini, sampaikan ke pengelola agar penanganan bisa dilakukan secara khusus.</li>
+        <li><strong>Salah input angka</strong> — periksa angka yang diinput, mungkin ada digit yang terlewat atau salah ketik.</li>
+      </ul>
+      <p>Anda dapat memeriksa riwayat pencatatan bulan-bulan sebelumnya sebagai pembanding untuk mendeteksi angka yang tidak wajar.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q"><span class="faq-q-icon">Q</span> Apa itu "Titip" dan "Hutang" di kolom rekap?</div>
+    <div class="faq-a">
+      <p>Sistem menggunakan mekanisme <strong>saldo berjalan</strong> antar bulan:</p>
+      <ul>
+        <li><strong>Hutang (angka merah)</strong> — warga belum membayar penuh tagihannya. Sisa kekurangan terbawa otomatis ke bulan depan dan ditambahkan ke tagihan berikutnya.</li>
+        <li><strong>Titip (angka hijau)</strong> — warga membayar lebih dari tagihan. Kelebihan tersimpan sebagai kredit dan dikurangi dari tagihan bulan depan.</li>
+      </ul>
+      <p>Sistem ini memudahkan warga yang ingin membayar lebih awal atau sedikit kurang pada bulan tertentu tanpa perlu perhitungan manual oleh petugas.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q"><span class="faq-q-icon">Q</span> Kenapa tombol "Bayar" tidak muncul di halaman pembayaran untuk beberapa warga?</div>
+    <div class="faq-a">
+      <p>Tombol Bayar hanya muncul untuk warga yang <strong>sudah dicatat meterannya</strong> pada bulan yang sedang dipilih. Jika warga belum dicatat, sistem tidak bisa menghitung tagihan sehingga pembayaran tidak bisa diproses.</p>
+      <p>Solusi: buka halaman <strong>Pencatatan</strong>, input angka meteran warga tersebut terlebih dahulu, baru kembali ke halaman Pembayaran untuk memproses pembayarannya.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q"><span class="faq-q-icon">Q</span> Bagaimana jika petugas lupa password?</div>
+    <div class="faq-a">
+      <p>Petugas tidak bisa mereset password sendiri — tidak ada fitur "lupa password" mandiri di sistem ini. Langkahnya adalah:</p>
+      <ol>
+        <li>Petugas menghubungi pengelola dan menyampaikan bahwa ia lupa password.</li>
+        <li>Pengelola membuka menu <strong>Akun</strong>, klik Edit pada akun petugas tersebut.</li>
+        <li>Pengelola mengisi kolom Password Baru dengan password sementara.</li>
+        <li>Setelah petugas bisa login, ia dapat mengganti sendiri passwordnya melalui menu <strong>Profil</strong>.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q"><span class="faq-q-icon">Q</span> Apakah data rekap bulan-bulan lalu masih bisa dilihat?</div>
+    <div class="faq-a">
+      <p>Ya, seluruh data historis tersimpan permanen di sistem dan dapat diakses kapan saja. Cukup buka halaman <strong>Rekap</strong>, lalu ubah filter bulan ke bulan yang ingin dilihat. Data akan ditampilkan secara lengkap. Anda juga bisa mengunduh rekap bulan-bulan lalu dalam format Excel melalui tombol Export.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q"><span class="faq-q-icon">Q</span> Kapan sebaiknya pencatatan meteran dilakukan setiap bulannya?</div>
+    <div class="faq-a">
+      <p>Idealnya, pencatatan meteran dilakukan pada <strong>tanggal yang sama setiap bulannya</strong> (misalnya selalu di tanggal 1–5 setiap bulan). Konsistensi tanggal pencatatan menghasilkan data pemakaian yang lebih akurat dan mudah dibandingkan antar bulan.</p>
+      <p>Hindari pencatatan yang terlalu maju atau mundur dari jadwal biasanya, karena selisih hari yang berbeda dapat mempengaruhi angka pemakaian yang tercatat meskipun pola penggunaan air warga tidak berubah.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Sistem Informasi Air Bersih Tirta Anugerah</span>
+    <span>BAB 6 — Pertanyaan Umum (FAQ)</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     BAB 7 — TROUBLESHOOTING
+══════════════════════════════════════════════════════════════ -->
+<div class="page chapter-break">
+  <div class="chapter-header">
+    <div class="chapter-number">07</div>
+    <div class="chapter-info">
+      <h2>Panduan Troubleshooting</h2>
+      <p>Solusi untuk masalah yang mungkin ditemui saat menggunakan sistem</p>
+    </div>
+  </div>
+
+  <div class="trouble-card">
+    <div class="trouble-header">❌ Masalah 1: Tidak Bisa Login</div>
+    <div class="trouble-body">
+      <div class="trouble-section">
+        <strong>Gejala:</strong>
+        <p>Setelah mengisi username dan password lalu klik Masuk, halaman tidak berpindah atau muncul pesan "Kredensial tidak cocok" / "Login gagal".</p>
+      </div>
+      <div class="trouble-section">
+        <strong>Kemungkinan Penyebab:</strong>
+        <ul>
+          <li>Username atau password yang diketik salah</li>
+          <li>Tombol <strong>Caps Lock</strong> aktif — username harus huruf kecil semua</li>
+          <li>Akun belum dibuat oleh pengelola</li>
+          <li>Akun sudah dihapus oleh pengelola</li>
+        </ul>
+      </div>
+      <div class="trouble-section">
+        <strong>Solusi:</strong>
+        <ol>
+          <li>Periksa apakah Caps Lock aktif dan matikan jika perlu.</li>
+          <li>Ketik ulang username dan password dengan hati-hati.</li>
+          <li>Pastikan username menggunakan huruf kecil semua.</li>
+          <li>Jika masih gagal, hubungi pengelola untuk memastikan akun Anda aktif atau untuk mereset password.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="trouble-card">
+    <div class="trouble-header">❌ Masalah 2: Halaman Menampilkan Error atau Tidak Tampil</div>
+    <div class="trouble-body">
+      <div class="trouble-section">
+        <strong>Gejala:</strong>
+        <p>Layar menampilkan halaman putih kosong, pesan error, atau halaman yang biasanya muncul tidak tampil seperti biasanya.</p>
+      </div>
+      <div class="trouble-section">
+        <strong>Solusi Langkah per Langkah:</strong>
+        <ol>
+          <li><strong>Refresh halaman</strong> — tekan tombol F5 pada laptop, atau tarik layar ke bawah pada HP.</li>
+          <li>Jika masih bermasalah, <strong>logout</strong> kemudian <strong>login kembali</strong>.</li>
+          <li>Coba buka halaman yang sama menggunakan <strong>tab/jendela browser baru</strong>.</li>
+          <li>Pastikan <strong>koneksi internet</strong> Anda stabil.</li>
+          <li>Jika semua langkah di atas sudah dicoba namun masalah berlanjut, catat pesan error yang muncul dan sampaikan ke teknisi sistem.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="trouble-card">
+    <div class="trouble-header">❌ Masalah 3: Data Tidak Tersimpan Setelah Klik Simpan</div>
+    <div class="trouble-body">
+      <div class="trouble-section">
+        <strong>Gejala:</strong>
+        <p>Sudah mengisi formulir dan klik Simpan, namun halaman kembali ke formulir yang sama dan data tidak masuk ke sistem.</p>
+      </div>
+      <div class="trouble-section">
+        <strong>Kemungkinan Penyebab:</strong>
+        <ul>
+          <li>Ada <strong>kolom wajib yang belum diisi</strong> atau diisi dengan format yang salah</li>
+          <li>Koneksi internet terputus saat proses penyimpanan</li>
+        </ul>
+      </div>
+      <div class="trouble-section">
+        <strong>Solusi:</strong>
+        <ol>
+          <li>Perhatikan <strong>pesan error berwarna merah</strong> yang muncul di bawah kolom formulir — pesan ini menjelaskan apa yang perlu diperbaiki.</li>
+          <li>Perbaiki isian sesuai petunjuk pada pesan error.</li>
+          <li>Pastikan koneksi internet stabil, lalu klik Simpan kembali.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="trouble-card">
+    <div class="trouble-header">❌ Masalah 4: Sistem Menolak Input Angka Meteran</div>
+    <div class="trouble-body">
+      <div class="trouble-section">
+        <strong>Gejala:</strong>
+        <p>Muncul pesan error: "Angka meteran baru tidak boleh lebih kecil dari angka meteran sebelumnya".</p>
+      </div>
+      <div class="trouble-section">
+        <strong>Penjelasan:</strong>
+        <p>Meteran air fisik normalnya hanya bertambah, tidak pernah mundur. Jika angka yang Anda input lebih kecil dari catatan bulan lalu, sistem menganggap ada kesalahan dan menolak input tersebut.</p>
+      </div>
+      <div class="trouble-section">
+        <strong>Solusi:</strong>
+        <ol>
+          <li>Periksa kembali angka meteran fisik di rumah warga. Bacaan petugas mungkin kurang tepat karena angka kurang jelas atau ada digit yang terlewat.</li>
+          <li>Jika ternyata meteran memang menunjukkan angka lebih kecil (misalnya karena meteran baru diganti), jangan dipaksakan — hubungi pengelola untuk penanganan khusus.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="trouble-card">
+    <div class="trouble-header">❌ Masalah 5: Tidak Bisa Mengakses Menu Tertentu</div>
+    <div class="trouble-body">
+      <div class="trouble-section">
+        <strong>Gejala:</strong>
+        <p>Menu tidak muncul di navigasi, atau saat membuka URL tertentu muncul halaman "Tidak Punya Akses" / "403 Forbidden".</p>
+      </div>
+      <div class="trouble-section">
+        <strong>Penjelasan:</strong>
+        <p>Fitur tersebut memang dibatasi hanya untuk akun dengan peran <strong>Pengelola</strong>. Jika Anda login sebagai Petugas, Anda memang tidak dapat mengakses menu Warga, Akun, Rekap, dan pengaturan tarif.</p>
+      </div>
+      <div class="trouble-section">
+        <strong>Solusi:</strong>
+        <p>Jika Anda merasa seharusnya memiliki akses ke fitur tersebut, minta pengelola untuk mengubah peran akun Anda dari "Petugas" menjadi "Pengelola".</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Sistem Informasi Air Bersih Tirta Anugerah</span>
+    <span>BAB 7 — Panduan Troubleshooting</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     LAMPIRAN — GLOSARI
+══════════════════════════════════════════════════════════════ -->
+<div class="page chapter-break">
+  <div class="chapter-header">
+    <div class="chapter-number">🔖</div>
+    <div class="chapter-info">
+      <h2>Lampiran — Glosari Istilah</h2>
+      <p>Penjelasan istilah-istilah yang digunakan dalam sistem</p>
+    </div>
+  </div>
+
+  <p>Berikut adalah daftar istilah yang digunakan di sistem Tirta Anugerah beserta penjelasannya dalam bahasa sehari-hari.</p>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Pengelola</div>
+    <div>Pengguna sistem dengan akses penuh. Bisa melakukan semua fungsi termasuk mengatur tarif, mengelola data warga, dan melihat laporan keuangan.</div>
+  </div>
+  <div class="glossary-item">
+    <div class="glossary-term">Petugas Air</div>
+    <div>Pengguna sistem yang bertugas di lapangan. Bisa mencatat meteran dan pembayaran, namun tidak bisa mengubah pengaturan sistem.</div>
+  </div>
+  <div class="glossary-item">
+    <div class="glossary-term">Meteran Awal</div>
+    <div>Angka yang tertera pada meteran air pada akhir bulan sebelumnya. Menjadi titik awal perhitungan pemakaian bulan ini.</div>
+  </div>
+  <div class="glossary-item">
+    <div class="glossary-term">Meteran Akhir</div>
+    <div>Angka yang terbaca dari meteran air fisik pada bulan ini. Diinput oleh petugas saat keliling ke rumah warga.</div>
+  </div>
+  <div class="glossary-item">
+    <div class="glossary-term">Pemakaian (m³)</div>
+    <div>Jumlah air yang digunakan warga dalam satu bulan, diukur dalam satuan meter kubik (m³). Dihitung otomatis: Meteran Akhir dikurangi Meteran Awal.</div>
+  </div>
+  <div class="glossary-item">
+    <div class="glossary-term">Tarif / Harga per m³</div>
+    <div>Harga yang dikenakan untuk setiap meter kubik air yang digunakan. Semakin banyak pemakaian, semakin besar biayanya.</div>
+  </div>
+  <div class="glossary-item">
+    <div class="glossary-term">Dana Meter</div>
+    <div>Biaya tetap yang dikenakan setiap bulan untuk perawatan meteran air. Jumlahnya sama setiap bulan, tidak bergantung pada seberapa banyak air yang digunakan.</div>
+  </div>
+  <div class="glossary-item">
+    <div class="glossary-term">Harga Air</div>
+    <div>Biaya air yang dihitung berdasarkan pemakaian: Pemakaian × Tarif per m³.</div>
+  </div>
+  <div class="glossary-item">
+    <div class="glossary-term">Tagihan Bulan Ini</div>
+    <div>Total biaya yang harus dibayar untuk bulan berjalan: Harga Air + Dana Meter.</div>
+  </div>
+  <div class="glossary-item">
+    <div class="glossary-term">Titip Lama / Saldo Awal</div>
+    <div>Sisa hutang atau kelebihan bayar yang terbawa dari bulan sebelumnya. Bernilai positif jika ada hutang, bernilai negatif jika ada kelebihan bayar (kredit).</div>
+  </div>
+  <div class="glossary-item">
+    <div class="glossary-term">Total Tagihan</div>
+    <div>Jumlah yang sebenarnya harus dibayar warga: Tagihan Bulan Ini + Titip Lama.</div>
+  </div>
+  <div class="glossary-item">
+    <div class="glossary-term">Terbayar</div>
+    <div>Jumlah uang yang sudah diterima dari warga pada bulan ini.</div>
+  </div>
+  <div class="glossary-item">
+    <div class="glossary-term">Hutang (Merah)</div>
+    <div>Warga belum membayar penuh tagihannya. Sisa kekurangan akan ditambahkan ke tagihan bulan depan.</div>
+  </div>
+  <div class="glossary-item">
+    <div class="glossary-term">Titip / Kredit (Hijau)</div>
+    <div>Warga membayar lebih dari tagihannya. Kelebihan akan dikurangi dari tagihan bulan depan.</div>
+  </div>
+  <div class="glossary-item">
+    <div class="glossary-term">Biaya Pemasangan</div>
+    <div>Biaya satu kali yang dikenakan saat warga baru pertama kali mendaftar sebagai pelanggan air. Bisa dibayar secara mencicil.</div>
+  </div>
+  <div class="glossary-item">
+    <div class="glossary-term">Dusun Sragan</div>
+    <div>Wilayah utama yang dilayani sistem. Warga di wilayah ini memiliki nomor RT dan RW yang jelas.</div>
+  </div>
+  <div class="glossary-item">
+    <div class="glossary-term">Luar Sragan</div>
+    <div>Kategori untuk warga yang berdomisili di luar Dusun Sragan. Tidak memiliki RT/RW spesifik.</div>
+  </div>
+  <div class="glossary-item">
+    <div class="glossary-term">Username</div>
+    <div>Nama unik yang digunakan untuk login. Harus menggunakan huruf kecil semua, tanpa spasi.</div>
+  </div>
+  <div class="glossary-item">
+    <div class="glossary-term">Dashboard</div>
+    <div>Halaman utama setelah login yang menampilkan ringkasan dan grafik data operasional Tirta Anugerah.</div>
+  </div>
+  <div class="glossary-item">
+    <div class="glossary-term">Rekap</div>
+    <div>Laporan lengkap bulanan berisi rincian pemakaian dan tagihan seluruh warga dalam satu tampilan tabel.</div>
+  </div>
+  <div class="glossary-item">
+    <div class="glossary-term">Export Excel</div>
+    <div>Fitur untuk mengunduh data rekap dalam format file Microsoft Excel (.xlsx) untuk keperluan arsip atau cetak.</div>
+  </div>
+
+  <hr class="divider"/>
+
+  <div style="text-align:center; padding: 32px 0; color: var(--muted);">
+    <p style="font-size: 18px; margin-bottom: 8px;">💧</p>
+    <p style="font-weight: 600; color: var(--primary); font-size: 12pt;">Sistem Informasi Air Bersih Tirta Anugerah</p>
+    <p style="font-size: 9pt; margin-top: 4px;">Buku Panduan Pengguna — Versi 1.0 | Juli 2026</p>
+    <p style="font-size: 9pt; color: var(--muted); margin-top: 8px;">Untuk informasi lebih lanjut, hubungi pengelola Tirta Anugerah.</p>
+  </div>
+
+  <div class="page-footer">
+    <span>Sistem Informasi Air Bersih Tirta Anugerah</span>
+    <span>Lampiran — Glosari Istilah</span>
+  </div>
+</div>
+
+</body>
+</html>

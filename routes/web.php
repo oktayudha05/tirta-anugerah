@@ -48,7 +48,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('pencatatans', PencatatanController::class)->only(['index', 'store']);
+    Route::resource('pencatatans', PencatatanController::class)->only(['index', 'store', 'edit', 'update']);
 });
 
 Route::middleware(['auth', 'role:pengelola'])->group(function () {
